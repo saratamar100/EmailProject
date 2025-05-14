@@ -1,10 +1,15 @@
-import { AppBar, Box, Button, Stack, Toolbar, Typography } from "@mui/material";
-import { useContext } from "react";
+import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
+import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import SendEmailModal from "./SendEmailModal";
 const UserLayout = () => {
   const { updateUser } = useContext(UserContext);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
   const handleLeave = () => {
     updateUser(null);
     //updateToken(null);
@@ -26,12 +31,20 @@ const UserLayout = () => {
           <Button
             sx={{ marginLeft: "auto" }}
             color="inherit"
+            onClick={handleOpenModal}
+          >
+            New Email
+          </Button>
+          <Button
+            sx={{ marginLeft: "auto" }}
+            color="inherit"
             onClick={handleLeave}
           >
             Log Out
           </Button>
         </Toolbar>
       </AppBar>
+      <SendEmailModal open={openModal} setOpen={setOpenModal} />
       <Outlet />
     </Stack>
   );

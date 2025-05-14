@@ -30,7 +30,6 @@ router.get("/:email", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   const { sender, receiver, subject, body } = req.body;
   const newEmail = {
     sender,
