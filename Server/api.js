@@ -5,24 +5,8 @@ const app = express();
 app.use(cors());
 
 
-const { MongoClient } = require('mongodb');
-const url = "mongodb://localhost:27017/";
-
-async function createCollection() {
-  try {
-    const client = await MongoClient.connect(url);
-    const dbo = client.db("email");  
-    await dbo.createCollection("users"); 
-    console.log("Collection created!");
-    client.close();
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-createCollection();
-
-
+const apiEmailsRouter = require("./routers/emails");
+app.use("/emails", apiEmailsRouter);
 
 app.get("/", (req, res) => {
   console.log("Request received!");  
