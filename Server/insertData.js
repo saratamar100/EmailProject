@@ -12,9 +12,56 @@ async function createCollection() {
     await dbo.collection("users").insertMany([
       { name: "sara", email: "sara@gmail.com" },
       { name: "Dana", email: "dana@gmail.com" },
-      { name: "Chava", email: "chava@gmail.com" }
+      { name: "Chava", email: "chava@gmail.com" },
     ]);
     console.log("the users inserted");
+
+    await dbo.createCollection("emails");
+    console.log("Collection users created");
+
+    await dbo.collection("emails").insertMany([
+      {
+        sender: "sara@gmail.com",
+        receiver: "dana@gmail.com",
+        subject: " hi",
+        body: "hi dana",
+      },
+      {
+        sender: "sara@gmail.com",
+        receiver: "chava@gmail.com",
+        subject: " hi",
+        body: "hi chava",
+      },
+      {
+        sender: "dana@gmail.com",
+        receiver: "sara@gmail.com",
+        subject: " hi",
+        body: "hi sara",
+      },
+    ]);
+    console.log("the emails inserted");
+
+    await dbo.collection("drafts").insertMany([
+      {
+        sender: "sara@gmail.com",
+        receiver: "dana@gmail.com",
+        subject: " hi",
+        body: "hi dana",
+      },
+      {
+        sender: "sara@gmail.com",
+        receiver: "chava@gmail.com",
+        subject: " hi",
+        body: "hi chava",
+      },
+      {
+        sender: "dana@gmail.com",
+        receiver: "sara@gmail.com",
+        subject: " hi",
+        body: "hi sara",
+      },
+    ]);
+    console.log("the drafts inserted");
 
     client.close();
   } catch (err) {
