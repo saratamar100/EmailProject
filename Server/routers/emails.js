@@ -21,7 +21,22 @@ router.get("/inbox/:email", async (req, res) => {
   try {
     const query = { receiver: email };
     const emails = await dbo.collection("emails").find(query).toArray();
-    res.json(emails);
+    const emailsData = await Promise.all(
+      emails.map(async (e) => {
+        const user = await dbo.collection("users").findOne({ email: e.sender });
+        console.log(e.sender);
+        console.log(user);
+        return {
+          id: e._id,
+          sender: e.sender,
+          subject: e.subject,
+          body: e.body,
+          firstName: user ? user.firstName : "",
+          lastName: user ? user.lastName : "",
+        };
+      })
+    );
+    res.json(emailsData);
   } catch (err) {
     console.error(err);
     res.status(500).send("Database error");

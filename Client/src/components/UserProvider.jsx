@@ -19,7 +19,7 @@ const UserProvider = ({ children }) => {
 
   const updateUser = (user) => {
     setUser(user);
-    //Cookies.set("user", JSON.stringify(user));
+    Cookies.set("user", JSON.stringify(user));
   };
 
   const updateToken = (token) => {
