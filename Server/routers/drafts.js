@@ -17,7 +17,7 @@ client
   });
 
 
-router.get("/", async (req, res) => {
+router.get("/:email", async (req, res) => {
   const { email } = req.params;
   try {
     const query = { sender: email };
