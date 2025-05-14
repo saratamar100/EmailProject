@@ -5,7 +5,7 @@ import { UserContext } from "./components/UserProvider";
 import { useContext } from "react";
 import UserLayout from "./components/UserLayout";
 import InboxPage from "./components/InboxPage";
-//import SignupPage from "./components/SignupPage";
+import SignupPage from "./components/SignupPage";
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -13,7 +13,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/signup" element={<SignupPage />} /> */}
+        <Route path="/signup" element={<SignupPage />} />
         {user && (
           <Route path="/" element={<UserLayout />}>
             <Route path="/inbox" element={<InboxPage />} />
