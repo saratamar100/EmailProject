@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
-
+app.use(express.json());
 
 const apiEmailsRouter = require("./routers/emails");
 app.use("/emails", apiEmailsRouter);

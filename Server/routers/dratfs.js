@@ -16,11 +16,12 @@ client
     console.error("Failed to connect to MongoDB", err);
   });
 
-router.get("/inbox/:email", async (req, res) => {
+
+router.get("/", async (req, res) => {
   const { email } = req.params;
   try {
-    const query = { receiver: email };
-    const emails = await dbo.collection("emails").find(query).toArray();
+    const query = { sender: email };
+    const emails = await dbo.collection("drafts").find(query).toArray();
     res.json(emails);
   } catch (err) {
     console.error(err);
@@ -40,7 +41,7 @@ router.post("/", async (req, res) => {
   };
 
   try {
-    const result = await dbo.collection("emails").insertOne(newEmail);
+    const result = await dbo.collection("dratfs").insertOne(newEmail);
     res.json({
       message: "the email was sent succsessfully",
       emailId: result.insertedId,
@@ -49,5 +50,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Database error", error: error.message });
   }
 });
+
 
 module.exports = router;
