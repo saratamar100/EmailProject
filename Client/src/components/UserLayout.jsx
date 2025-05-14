@@ -3,11 +3,11 @@ import { useContext } from "react";
 import { UserContext } from "./UserProvider";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 const UserLayout = () => {
-  const {  updateUser } = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLeave = () => {
     updateUser(null);
-    //updateToken(null); 
+    //updateToken(null);
     navigate("/");
   };
 
@@ -24,6 +24,7 @@ const UserLayout = () => {
             <Link to="inbox">Inbox</Link>
           </Typography>
           <Button
+            sx={{ marginLeft: "auto" }}
             color="inherit"
             onClick={handleLeave}
           >

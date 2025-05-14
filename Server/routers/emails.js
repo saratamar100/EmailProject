@@ -33,6 +33,7 @@ router.get("/inbox/:email", async (req, res) => {
           body: e.body,
           firstName: user ? user.firstName : "",
           lastName: user ? user.lastName : "",
+          time: e.time,
         };
       })
     );
