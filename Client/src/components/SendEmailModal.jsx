@@ -5,6 +5,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useContext, useState } from "react";
 import { Stack, TextField } from "@mui/material";
 import { UserContext } from "./UserProvider";
+import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const style = {
   position: "absolute",
@@ -16,6 +18,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: 4,
 };
 
 export default function SendEmailModal({ open, setOpen }) {
@@ -86,10 +89,24 @@ export default function SendEmailModal({ open, setOpen }) {
       >
         <Stack sx={style} gap={1}>
           <Stack direction="row" justifyContent="space-between">
-            <Button onClick={handleSend}>Send</Button>
+            <Button
+              onClick={handleSend}
+              variant="contained"
+              sx={{ borderRadius: 5 }}
+            >
+              <SendIcon />
+              Send
+            </Button>
             <Box>
-              <Button onClick={handleCancel}>Cancel</Button>
-              <Button onClick={handleClose}>
+              <Button
+                onClick={handleCancel}
+                variant="contained"
+                sx={{ borderRadius: 5, bgcolor: "red" }}
+              >
+                <DeleteIcon />
+                Cancel
+              </Button>
+              <Button onClick={handleClose} sx={{ color: "black" }}>
                 <CloseIcon />
               </Button>
             </Box>
