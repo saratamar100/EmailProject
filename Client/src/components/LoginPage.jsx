@@ -40,7 +40,8 @@ const LoginPage = () => {
       //updateToken(token);
       updateUser({
         email,
-        //userDetails: data,
+        firstName: data.user.firstName,
+        lastName: data.user.lastName,
       });
       navigate("/supplier");
       //}
@@ -62,7 +63,15 @@ const LoginPage = () => {
         alignItems: "center",
       }}
     >
-      <Card sx={{ maxWidth: 400, minHeight: 400, p: 5, boxShadow:5 , borderRadius:4}}>
+      <Card
+        sx={{
+          maxWidth: 400,
+          minHeight: 400,
+          p: 5,
+          boxShadow: 5,
+          borderRadius: 4,
+        }}
+      >
         <Stack gap={1} sx={{ alignItems: "center" }}>
           <Typography variant="h4" sx={{ fontFamily: "Rubik" }}>
             Welcome

@@ -16,7 +16,9 @@ const EmailsList = ({ emails, onSelectEmail, selectedId }) => {
           selected={selectedId === e.id}
         >
           <ListItemAvatar>
-            <Avatar>{e.firstName[0] + e.lastName[0]}</Avatar>
+            <Avatar>
+              {e.firstName && e.lastName && e.firstName[0] + e.lastName[0]}
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary={e.subject}

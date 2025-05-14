@@ -1,10 +1,17 @@
-import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Avatar,
+  Button,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import SendEmailModal from "./SendEmailModal";
 const UserLayout = () => {
-  const { updateUser } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const handleOpenModal = () => {
@@ -25,23 +32,33 @@ const UserLayout = () => {
     >
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ m: 3 }}>
-            <Link to="inbox">Inbox</Link>
-          </Typography>
+          <Button
+            color="white"
+            onClick={() => {
+              navigate("/inbox");
+            }}
+          >
+            Inbox
+          </Button>
           <Button
             sx={{ marginLeft: "auto" }}
-            color="inherit"
+            color="white"
             onClick={handleOpenModal}
           >
             New Email
           </Button>
           <Button
             sx={{ marginLeft: "auto" }}
-            color="inherit"
+            color="white"
             onClick={handleLeave}
           >
             Log Out
           </Button>
+          <Avatar>
+            {user.firstName &&
+              user.lastName &&
+              user.firstName[0] + user.lastName[0]}
+          </Avatar>
         </Toolbar>
       </AppBar>
       <SendEmailModal open={openModal} setOpen={setOpenModal} />
