@@ -10,9 +10,9 @@ async function createCollection() {
     console.log("Collection users created");
 
     await dbo.collection("users").insertMany([
-      { name: "sara", email: "sara@gmail.com" },
-      { name: "Dana", email: "dana@gmail.com" },
-      { name: "Chava", email: "chava@gmail.com" },
+      { name: "Sara", email: "sara@gmail.com", password: "sara1" },
+      { name: "Dana", email: "dana@gmail.com", password: "dana1" },
+      { name: "Chava", email: "chava@gmail.com", password: "chava1" },
     ]);
     console.log("the users inserted");
 
