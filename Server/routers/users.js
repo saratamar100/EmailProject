@@ -34,10 +34,11 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { email, name } = req.body;
+  const { email, firstName, lastName } = req.body;
   const newUser = {
     email,
-    name,
+    firstName,
+    lastName,
   };
 
   try {
